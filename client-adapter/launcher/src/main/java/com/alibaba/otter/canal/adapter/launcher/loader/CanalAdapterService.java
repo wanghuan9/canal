@@ -1,9 +1,10 @@
 package com.alibaba.otter.canal.adapter.launcher.loader;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
-import javax.annotation.Resource;
-
+import com.alibaba.druid.pool.DruidDataSource;
+import com.alibaba.otter.canal.adapter.launcher.common.SyncSwitch;
+import com.alibaba.otter.canal.adapter.launcher.config.AdapterCanalConfig;
+import com.alibaba.otter.canal.adapter.launcher.config.SpringContext;
+import com.alibaba.otter.canal.client.adapter.support.DatasourceConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -11,11 +12,9 @@ import org.springframework.cloud.context.refresh.ContextRefresher;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
-import com.alibaba.druid.pool.DruidDataSource;
-import com.alibaba.otter.canal.adapter.launcher.common.SyncSwitch;
-import com.alibaba.otter.canal.adapter.launcher.config.AdapterCanalConfig;
-import com.alibaba.otter.canal.adapter.launcher.config.SpringContext;
-import com.alibaba.otter.canal.client.adapter.support.DatasourceConfig;
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+import javax.annotation.Resource;
 
 /**
  * 适配器启动业务类
@@ -47,6 +46,8 @@ public class CanalAdapterService {
 
     private volatile boolean    running = false;
 
+    //@my: 启动入口
+    //https://blog.csdn.net/qq_42985872/article/details/128321565
     @PostConstruct
     public synchronized void init() {
         if (running) {
