@@ -46,7 +46,7 @@ public class CanalAdapterService {
 
     private volatile boolean    running = false;
 
-    //@my: 启动入口
+    //@by wanghuan: 启动入口
     //https://blog.csdn.net/qq_42985872/article/details/128321565
     @PostConstruct
     public synchronized void init() {
